@@ -15,8 +15,8 @@ namespace MB04
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             
-            Application.Run(new ReferenceExampleView());
-            //Application.Run(new Handtaschenverwaltung());
+            //qApplication.Run(new ReferenceExampleView());
+            Application.Run(new Handtaschenverwaltung());
 
         }
     }
