@@ -7,8 +7,6 @@
         {
             Name = name;
             Price = price;
-            Bags = new List<Handbag>();
-
         }
 
 		public List<Handbag> Bags { get; set; }
@@ -26,28 +24,5 @@
             }
             return false;
         }
-
-		public bool AddBag(Handbag bag)
-		{
-			var isBagAlreadyCaptured = IsBagAlreadyCaptured(bag);
-			if (!isBagAlreadyCaptured)
-			{
-				Bags.Add(bag);
-				return true;
-			}
-			return false;
-		}
-
-		private bool IsBagAlreadyCaptured(Handbag bag)
-		{
-			foreach (var item in Bags)
-			{
-				if (item.Equals(bag))
-				{
-					return true;
-				}
-			}
-			return false;
-		}
 	}
 }

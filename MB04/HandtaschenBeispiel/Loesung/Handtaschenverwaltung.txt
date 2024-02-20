@@ -1,14 +1,17 @@
-    public partial class Handtaschenverwaltung : Form
+ public partial class Handtaschenverwaltung : Form
     {
+        public List<Handbag> Bags { get; set; }
+
         public Handtaschenverwaltung()
         {
             InitializeComponent();
+            Bags = new List<Handbag>();
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             var bag = new Handbag(TxtName.Text, Convert.ToInt32(NuDPrice.Value));
-            var isAdded = bag.AddBag(bag);
+            var isAdded = AddBag(bag);
             if (!isAdded)
             {
                 MessageBox.Show(this, "Die Handtasche wurde bereits erfasst");
@@ -18,4 +21,28 @@
                 MessageBox.Show(this, "Die Handtasche wurde erfolgreich erfasst");
             }
         }
+
+        public bool AddBag(Handbag bag)
+        {
+            var isBagAlreadyCaptured = IsBagAlreadyCaptured(bag);
+            if (!isBagAlreadyCaptured)
+            {
+                Bags.Add(bag);
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsBagAlreadyCaptured(Handbag bag)
+        {
+            foreach (var item in Bags)
+            {
+                if (item.Equals(bag))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
+
